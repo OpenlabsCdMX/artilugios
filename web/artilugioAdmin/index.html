@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app="appAdmin">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administrador Artilugio</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/angular.min.js"></script>
+	<script src="mainAngular.js"></script>
+	
+	<style type="text/css">
+			#mapid { height: 500px;  }
+			.img_menu{
+				width: 180px;
+				height: 35px;
+			}
+			.img_icon{
+				width: 180px;
+				height: 220px;
+			}
+	</style>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Administrador artilugio</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="texto-artilugio-sm.png" class="img_menu" alt="Artilugio" width="304" height="236"></a>
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Salir</a>
+					
+					</li>
+				</ul>
+			</div>
+							
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+	<br>
+	<img src="img/logo-artilugio.png" class="img_icon" alt="Artilugio" width="304" height="236">
+
+
+		<ul class="nav menu">
+			<li><a href="index.html">Mapa</a></li>
+		<!--	<li><a  href ng-click="getFilterData()" >Habitabilidad</a></li>
+			<li><a href="videos.html">Sensorama</a></li>-->
+
+		</ul>
+
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+	
+		<div ng-controller="adminController">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Mapeo</h1>
+					<div class="col-lg-3"> 
+						<label for="singleSelect"> Capa 1</label><br>
+				    	<select name="singleSelectCapa1" id="singleSelectCapa1" ng-model="data.selectCapa1"  ng-change="getFilterData()" 
+				    	ng-options="item.indicador  as item.indicador  for item in catcapaone">
+						     <!-- <option  value="">---Please select---</option>  not selected / blank option -->
+						      <!--<option  value="Habitabilidad">Habitabilidad</option>
+						      <option value="Sensorama">Sensorama</option> -->
+				    	</select>
+		
+				    </div>
+
+				    <div class="col-lg-3"> 
+						<label for="singleSelect"> Capa 2</label><br>
+				    	<select name="singleSelectCapa2" id="singleSelectCapa2" ng-model="data.selecCapa2"  ng-change="getFilterDataCapaDos()"
+				    	ng-options="item.variable  as item.variable  for item in catcapados">
+						     
+						    <!-- <!- <option value="">---Please select---</option> 
+						      <option value="Habitabilidad">Habitabilidad</option> 
+						      <option value="Sensorama">Sensorama</option> -->
+				    	</select>
+				    	
+				    </div>
+
+ 					<div class="col-lg-3"> 
+ 						<label for="singleSelect"> Capa 3</label><br>
+					    <select name="singleSelectCapa3" id="singleSelectCapa3" ng-model="data.selecCapa3"  ng-change="getFilterDataCapaTres()"
+					    ng-options="item.sub_variable  as item.sub_variable  for item in catcapatres">
+							     <!-- <option value="">---Please select---</option> 
+							      <option value="Habitabilidad">Habitabilidad</option> 
+							      <option value="Sensorama">Sensorama</option> -->
+					    </select>
+
+				   	</div>
+
+				</div>
+			</div><!--/.row-->
+			
+			<div class="row"><span> &nbsp; &nbsp;</span>
+			</div>	
+			
+			<div class="row">
+			
+				<div id="mapid"></div>
+			</div><!--/.row-->
+
+		
+		
+		</div>	<!-- div del controller -->
+	</div>	<!--/.main-->
+
+</body>
+	
+<!-- <script src="leaflet.js"></script> -->
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
+<script src="admin.js"></script>
+
+</html>
