@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        
+        <title>Artilugios</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Leaflet -->
+        <link rel="stylesheet" type="text/css" href="plugins/leaflet/leaflet.css" />
+        <!-- jsTree -->
+        <link rel="stylesheet" href="plugins/jstree-bootstrap-theme/themes/proton/style.min.css" />
+        <!-- Custom CSS -->
+        <link href="css/general.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <a class="navbar-brand" href="#"><img id="logo" src="images/texto-artilugio-sm.png" /></a>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a id="cerrar-map-origen-destino"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="mostrar-filtros"><i class="glyphicon glyphicon-search"></i></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+
+        <div class="container">
+            <div id="map">
+                
+            </div>
+            <div id="filtros">
+                <br />
+                <h5>1. Selecciona una ciudad para elegir tu origen y destino</h5>
+                <div class="form-group">
+                    <div class="input-group">
+                        <select class="form-control" id="ciudad">
+                            <option style="display:none;">Ciudad...</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button id="selecciona-origen-destino" class="btn btn-default" type="button"><i class="glyphicon glyphicon-screenshot"></i></button>
+                        </span>
+                    </div>                    
+                </div>
+                <br />
+                <!--<h5>1. Ingresa el origen y destino</h5>
+                <div class="form-group">
+                    <input class="form-control" id="origen" placeholder="Origen" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="destino" placeholder="Destino" />
+                </div>
+                <br />-->
+                <h5>2. Elige los tipos de lugares que quieres ver:</h5>
+                <div id="categorias"></div>
+                <div class="row text-center">
+                    <button id="buscar" class="btn btn-lg">Buscar</button>
+                </div>
+                <br /><br />
+                <div id="loading">
+                </div>
+                <div id="container-map-origen-destino">
+                    <div id="map-origen-destino">
+                    </div>
+                    <div id="buttons-map-origen-destino">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button id="origen" class="btn btn-block btn-lg">Origen</button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button id="destino" class="btn btn-block btn-lg">Destino</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <!-- jQuery -->
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+        <!-- Leaflet -->
+        <script type="text/javascript" src="plugins/leaflet/leaflet.js"></script>
+        <!-- jsTree -->
+        <script type="text/javascript" src="plugins/jstree-bootstrap-theme/jstree.min.js"></script>
+        <!-- Custom -->
+        <script type="text/javascript" src="scripts/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    padding-top:56px;
+    padding-right:0px;
+    padding-left:0px;
+}
+#map,
+#map-origen-destino {
+    height: 100%;
+    width: 100%;
+}
+#filtros,
+#loading,
+#container-map-origen-destino,
+#buttons-map-origen-destino {
+    position:absolute;
+    bottom:0;
+    right:0;
+    left:0;
+}
+#filtros > *:not(#loading),
+#mostrar-filtros,
+#cerrar-map-origen-destino {
+    display:none;
+}
+#filtros {
+    top:56px;
+    padding:10px 20px;
+    background-color: #eee;
+    z-index:3000;
+    overflow-y:auto;
+}
+#loading {
+    top:0;
+    background-image: url('../images/loading.gif');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-color: rgba(100,100,100,0.3);
+    z-index:3005;
+}
+#container-map-origen-destino {
+    top:0;
+    z-index:3001;
+}
+#buttons-map-origen-destino {
+    z-index: 3002;
+}
+#filtros button#buscar {
+    margin-top: 25px;
+}
+.jstree-themeicon {
+    display:none !important;
+}
