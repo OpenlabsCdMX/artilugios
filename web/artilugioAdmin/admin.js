@@ -27,8 +27,19 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 			//console.log("SUCCESS RESPONSE getAllData--> ",success.data);
 
 			for(var i=0;i<success.data.rows.length;i++) {
+				console.log("nombre:" +((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png');
+				var greenIcon = L.icon({
+			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
+			    	shadowUrl: '',
+
+				    iconSize:     [29, 42], // size of the icon
+				    shadowSize:   [25, 32], // size of the shadow
+				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+				    shadowAnchor: [4, 62],  // the same for the shadow
+				    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+				});
 	
-				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud]);//.addTo(mymap);
+				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud],{icon: greenIcon});//.addTo(mymap);
 				 marker.bindPopup("<b>"+success.data.rows[i].sub_variable+"</b><br>" + success.data.rows[i].observaciones, {
             			showOnMouseOver: true
         			});
@@ -90,7 +101,20 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 
 			for(var i=0;i<success.data.rows.length;i++) {
 				
-				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud])
+
+				var greenIcon = L.icon({
+			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
+			    	shadowUrl: '',
+
+				    iconSize:     [38, 55], // size of the icon
+				    shadowSize:   [50, 64], // size of the shadow
+				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+				    shadowAnchor: [4, 62],  // the same for the shadow
+				    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+				});
+	
+				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud],{icon: greenIcon});
+				 //var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud]);
 				  marker.bindPopup("<b>"+success.data.rows[i].sub_variable+"</b><br>" + success.data.rows[i].observaciones, {
             			showOnMouseOver: true
         			});
@@ -117,8 +141,20 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 			
 
 			for(var i=0;i<success.data.rows.length;i++) {
-				console.log(success.data.rows[i].latitud);
-				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud])
+				var greenIcon = L.icon({
+			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
+			    	shadowUrl: '',
+
+				    iconSize:     [38, 55], // size of the icon
+				    shadowSize:   [50, 64], // size of the shadow
+				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+				    shadowAnchor: [4, 62],  // the same for the shadow
+				    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+				});
+	
+				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud],{icon: greenIcon});
+				 
+
 				  marker.bindPopup("<b>"+success.data.rows[i].sub_variable+"</b><br>" + success.data.rows[i].observaciones, {
             			showOnMouseOver: true
         			});
@@ -145,8 +181,22 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 			
 
 			for(var i=0;i<success.data.rows.length;i++) {
-				console.log(success.data.rows[i].latitud);
-				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud])
+				var greenIcon = L.icon({
+			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
+			    	shadowUrl: '',
+
+				    iconSize:     [38, 55], // size of the icon
+				    shadowSize:   [50, 64], // size of the shadow
+				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+				    shadowAnchor: [4, 62],  // the same for the shadow
+				    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+				});
+	
+				 var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud],{icon: greenIcon});
+				 
+
+
+				 //var marker = L.marker([success.data.rows[i].latitud, success.data.rows[i].longitud])
 				  marker.bindPopup("<b>"+success.data.rows[i].sub_variable+"</b><br>" + success.data.rows[i].observaciones, {
             			showOnMouseOver: true
         			});
