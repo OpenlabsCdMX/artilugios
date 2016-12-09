@@ -6,7 +6,7 @@ var markers_origen_destino = [0,0];
 
 (function () {
     "use strict";
-    
+    init();
     document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
 
     function onDeviceReady() {
@@ -40,7 +40,7 @@ var markers_origen_destino = [0,0];
         });
         // Obtiene categorías
         $.ajax({
-            url: 'http://jvakero.carto.com/api/v2/sql?q=SELECT indicador,variable,sub_variable FROM artilugio_categoria GROUP BY sub_variable,variable,indicador',
+            url: 'http://jvakero.carto.com/api/v2/sql?q=SELECT indicador,variable,sub_variable FROM artilugio_categoria GROUP BY sub_variable,variable,indicador ORDER BY indicador ASC,variable ASC,sub_variable ASC',
             success: function (response) {
                 var indicadores = {};
                 for (var i = 0; i < response.rows.length; i++) {
@@ -220,21 +220,17 @@ var markers_origen_destino = [0,0];
                 type: 'POST',
                 data: { q: 'SELECT * FROM artilugio_categoria WHERE ' + subvariables.join(' OR ') },
                 success: function (response) {
-                    // Icono personalizado
-                    var greenIcon = L.icon({
-                        iconUrl: 'leaf-green.png',
-                        shadowUrl: 'leaf-shadow.png',
-
-                        iconSize: [38, 95], // size of the icon
-                        shadowSize: [50, 64], // size of the shadow
-                        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-                        shadowAnchor: [4, 62],  // the same for the shadow
-                        popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-                    });
                     // Agrega marcadores
                     for (var i = 0; i < response.rows.length; i++) {
-                        markers.push(L.marker([response.rows[i].latitud, response.rows[i].longitud], { /*icon: greenIcon*/ })
-                            .addTo(map)
+                        var url_imagen = 'images/iconos/'+response.rows[i].sub_variable.toLowerCase().replace(' ','')+'.png';
+                        // Icono personalizado
+                        var icono_personalizado = L.icon({
+                            iconUrl:    url_imagen,
+                            iconSize:   [30, 45]
+                        });
+                        var marker = L.marker([response.rows[i].latitud, response.rows[i].longitud], { icon: icono_personalizado }).addTo(map);
+
+                        markers.push(marker
                             .bindPopup('<strong>' + response.rows[i].sub_variable + '</strong><br>' + response.rows[i].observaciones));
                         arrayOfLatLngs.push([response.rows[i].latitud, response.rows[i].longitud]);
                     }
@@ -243,17 +239,11 @@ var markers_origen_destino = [0,0];
                     map.fitBounds(bounds);
                     var polygon_bounds = arrayOfLatLngs.splice(2);
                     var polygon = L.polygon(polygon_bounds, { color: 'purple', opacity: .6 })/*.addTo(map)*/;
-                    console.log(polygon_bounds);
                     // Esconde loading
                     hideLoading();
-                    // Valida que el origen y destino estén cerca del área
-                    //if (pointWithinBounds(arrayOfLatLngs[0], polygon_bounds) || pointWithinBounds(arrayOfLatLngs[1], polygon_bounds)) {
-                        // Muestra mapa
-                        $('#mostrar-filtros').show();
-                        $('#filtros').slideToggle();
-                    /*} else {
-                        alert('No hay rutas disponibles entre el punto de origen y destino');
-                    }*/
+                    // Muestra mapa
+                    $('#mostrar-filtros').show();
+                    $('#filtros').slideToggle();
                     
                 },
                 error: function (xhr, status, error) {
@@ -308,34 +298,17 @@ function toggleOrigenDestino(){
     if($('#origen').hasClass('active')) activaDestino();
     else activaOrigen();
 }
+
 function activaOrigen() {
     $('#origen,#destino').find('span').remove();
     $('#destino').removeClass('active');
     $('#origen').addClass('active');
     $('#origen').append('<span> <i class="glyphicon glyphicon-ok"></i></span>');
 }
+
 function activaDestino() {
     $('#origen,#destino').find('span').remove();
     $('#origen').removeClass('active');
     $('#destino').addClass('active');
     $('#destino').append('<span> <i class="glyphicon glyphicon-ok"></i></span>');
 }
-
-function pointWithinBounds(point, vs) {
-    // ray-casting algorithm based on
-    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-    
-    var x = point[0], y = point[1];
-    
-    var inside = false;
-    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-        var xi = vs[i][0], yi = vs[i][1];
-        var xj = vs[j][0], yj = vs[j][1];
-        
-        var intersect = ((yi > y) != (yj > y))
-            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-        if (intersect) inside = !inside;
-    }
-    
-    return inside;
-};
