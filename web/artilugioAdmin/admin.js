@@ -106,7 +106,7 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
 			    	shadowUrl: '',
 
-				    iconSize:     [38, 55], // size of the icon
+				    iconSize:     [29, 42], // size of the icon
 				    shadowSize:   [50, 64], // size of the shadow
 				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
 				    shadowAnchor: [4, 62],  // the same for the shadow
@@ -144,8 +144,8 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 				var greenIcon = L.icon({
 			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
 			    	shadowUrl: '',
-
-				    iconSize:     [38, 55], // size of the icon
+ 					
+ 					iconSize:     [29, 42], // size of the icon
 				    shadowSize:   [50, 64], // size of the shadow
 				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
 				    shadowAnchor: [4, 62],  // the same for the shadow
@@ -184,8 +184,8 @@ app.controller('adminController',['$scope','$http',function($scope,$http){
 				var greenIcon = L.icon({
 			    	iconUrl: "img/"+((success.data.rows[i].sub_variable).toLowerCase()).split(' ').join('')+'.png',
 			    	shadowUrl: '',
-
-				    iconSize:     [38, 55], // size of the icon
+ 
+ 					iconSize:     [29, 42], // size of the icon
 				    shadowSize:   [50, 64], // size of the shadow
 				    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
 				    shadowAnchor: [4, 62],  // the same for the shadow
