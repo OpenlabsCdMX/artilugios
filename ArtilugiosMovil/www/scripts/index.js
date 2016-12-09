@@ -6,7 +6,7 @@ var markers_origen_destino = [0,0];
 
 (function () {
     "use strict";
-    init();
+
     document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
 
     function onDeviceReady() {
